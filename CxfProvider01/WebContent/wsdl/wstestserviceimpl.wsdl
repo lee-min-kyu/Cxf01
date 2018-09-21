@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="WsTestServiceImplService" targetNamespace="http://ws.tain.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.tain.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.tain.org/" elementFormDefault="unqualified" targetNamespace="http://ws.tain.org/" version="1.0">
+<xs:element name="getMessage" type="tns:getMessage"/>
+<xs:element name="getMessageResponse" type="tns:getMessageResponse"/>
+<xs:element name="main" type="tns:main"/>
+<xs:element name="mainResponse" type="tns:mainResponse"/>
+<xs:complexType name="getMessage">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getMessageResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="main">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="mainResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getMessage">
+    <wsdl:part name="parameters" element="tns:getMessage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="mainResponse">
+    <wsdl:part name="parameters" element="tns:mainResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="main">
+    <wsdl:part name="parameters" element="tns:main">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMessageResponse">
+    <wsdl:part name="parameters" element="tns:getMessageResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WsTestServiceImpl">
+    <wsdl:operation name="getMessage">
+      <wsdl:input name="getMessage" message="tns:getMessage">
+    </wsdl:input>
+      <wsdl:output name="getMessageResponse" message="tns:getMessageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="main">
+      <wsdl:input name="main" message="tns:main">
+    </wsdl:input>
+      <wsdl:output name="mainResponse" message="tns:mainResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsTestServiceImplServiceSoapBinding" type="tns:WsTestServiceImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getMessage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMessage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMessageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="main">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="main">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="mainResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WsTestServiceImplService">
+    <wsdl:port name="WsTestServiceImplPort" binding="tns:WsTestServiceImplServiceSoapBinding">
+      <soap:address location="http://localhost:9090/WsTestServiceImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
